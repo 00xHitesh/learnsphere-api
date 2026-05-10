@@ -1,0 +1,1917 @@
+basePath: /api/v1
+definitions:
+  github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse:
+    properties:
+      content:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: string
+      role:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse:
+    properties:
+      category:
+        type: string
+      cover:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      instructor:
+        type: string
+      instructorBio:
+        type: string
+      lessons:
+        items:
+          $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LessonResponse'
+        type: array
+      level:
+        type: string
+      listPrice:
+        type: number
+      quiz:
+        $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizResponse'
+      rating:
+        type: number
+      reviews:
+        items:
+          $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ReviewResponse'
+        type: array
+      salePrice:
+        type: number
+      slug:
+        type: string
+      status:
+        type: string
+      studentCount:
+        type: integer
+      summary:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.CurrencyResponse:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      rateVsUsd:
+        type: number
+      symbol:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse:
+    properties:
+      completedLessonIds:
+        items:
+          type: string
+        type: array
+      courseId:
+        type: string
+      enrolledAt:
+        type: string
+      id:
+        type: string
+      passedQuizIds:
+        items:
+          type: string
+        type: array
+      timeSpentSeconds:
+        type: integer
+      userId:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse:
+    properties:
+      description:
+        type: string
+      enabled:
+        type: boolean
+      id:
+        type: string
+      label:
+        type: string
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.LessonResponse:
+    properties:
+      courseId:
+        type: string
+      description:
+        type: string
+      duration:
+        type: string
+      id:
+        type: string
+      isPreview:
+        type: boolean
+      sortOrder:
+        type: integer
+      title:
+        type: string
+      videoUrl:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse:
+    properties:
+      courseId:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      durationMinutes:
+        type: integer
+      id:
+        type: string
+      instructor:
+        type: string
+      joinUrl:
+        type: string
+      listPrice:
+        type: number
+      maxAttendees:
+        type: integer
+      registeredCount:
+        type: integer
+      salePrice:
+        type: number
+      scheduledAt:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      topic:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.OverviewResponse:
+    properties:
+      revenue:
+        type: number
+      topCourses:
+        items:
+          $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+        type: array
+      totalCourses:
+        type: integer
+      totalEnrollments:
+        type: integer
+      totalUsers:
+        type: integer
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint:
+    properties:
+      label:
+        type: string
+      value:
+        type: number
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.QuizOptionResponse:
+    properties:
+      id:
+        type: string
+      optionKey:
+        type: string
+      text:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.QuizQuestionResponse:
+    properties:
+      correctOptionKeys:
+        items:
+          type: string
+        type: array
+      explanation:
+        type: string
+      id:
+        type: string
+      isMultiSelect:
+        type: boolean
+      options:
+        items:
+          $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizOptionResponse'
+        type: array
+      prompt:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.QuizResponse:
+    properties:
+      courseId:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      passingScore:
+        type: integer
+      questions:
+        items:
+          $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizQuestionResponse'
+        type: array
+      title:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.RegionResponse:
+    properties:
+      code:
+        type: string
+      defaultCurrencyCode:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.ReviewResponse:
+    properties:
+      comment:
+        type: string
+      courseId:
+        type: string
+      id:
+        type: string
+      rating:
+        type: integer
+      reviewedAt:
+        type: string
+      reviewerName:
+        type: string
+      userId:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair:
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse:
+    properties:
+      amount:
+        type: number
+      courseId:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      userId:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse:
+    properties:
+      avatarUrl:
+        type: string
+      bio:
+        type: string
+      createdAt:
+        type: string
+      currencyCode:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      interests:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      points:
+        type: integer
+      regionCode:
+        type: string
+      role:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_internal_service.WishlistItemResponse:
+    properties:
+      addedAt:
+        type: string
+      courseId:
+        type: string
+      userId:
+        type: string
+    type: object
+  github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse:
+    properties:
+      errors: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_hitnarkhede_learnsphere-api_pkg_response.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  internal_handler.AppendMessageRequest:
+    properties:
+      content:
+        example: What is TypeScript?
+        type: string
+      courseId:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+      role:
+        example: user
+        type: string
+    type: object
+  internal_handler.EnrollRequest:
+    properties:
+      courseId:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+    type: object
+  internal_handler.LoginRequest:
+    properties:
+      email:
+        example: demo@lumen.io
+        type: string
+      password:
+        example: secret123
+        type: string
+    type: object
+  internal_handler.PurchaseRequest:
+    properties:
+      courseId:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+    type: object
+  internal_handler.RecordTimeRequest:
+    properties:
+      seconds:
+        example: 120
+        type: integer
+    type: object
+  internal_handler.RegisterRequest:
+    properties:
+      email:
+        example: jane@example.com
+        type: string
+      name:
+        example: Jane Doe
+        type: string
+      password:
+        example: secret123
+        type: string
+    type: object
+  internal_handler.ResetPasswordRequest:
+    properties:
+      password:
+        example: newpassword123
+        type: string
+      token:
+        example: abc123def456
+        type: string
+    type: object
+  internal_handler.ResetRequestBody:
+    properties:
+      email:
+        example: demo@lumen.io
+        type: string
+    type: object
+  internal_handler.SetCourseStatusRequest:
+    properties:
+      status:
+        example: published
+        type: string
+    type: object
+  internal_handler.SetLiveSessionStatusRequest:
+    properties:
+      status:
+        example: published
+        type: string
+    type: object
+  internal_handler.UpdateInterestsRequest:
+    properties:
+      interests:
+        example:
+        - Design
+        - Programming
+        items:
+          type: string
+        type: array
+    type: object
+  internal_handler.UpdateLocaleRequest:
+    properties:
+      currencyCode:
+        example: USD
+        type: string
+      regionCode:
+        example: US
+        type: string
+    type: object
+  internal_handler.UpsertCourseRequest:
+    properties:
+      category:
+        example: Programming
+        type: string
+      cover:
+        example: TS
+        type: string
+      description:
+        example: Move from JavaScript to confident TypeScript.
+        type: string
+      id:
+        example: ""
+        type: string
+      instructor:
+        example: Kenji Romero
+        type: string
+      instructorBio:
+        example: Senior engineer.
+        type: string
+      level:
+        example: Beginner
+        type: string
+      listPrice:
+        example: 49
+        type: number
+      salePrice:
+        example: 29
+        type: number
+      slug:
+        example: foundations-of-typescript
+        type: string
+      status:
+        example: published
+        type: string
+      summary:
+        example: Master TypeScript fundamentals.
+        type: string
+      tags:
+        example:
+        - typescript
+        - programming
+        items:
+          type: string
+        type: array
+      title:
+        example: Foundations of TypeScript
+        type: string
+    type: object
+  internal_handler.UpsertLiveSessionRequest:
+    properties:
+      courseId:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+      description:
+        example: Advanced TypeScript patterns.
+        type: string
+      durationMinutes:
+        example: 90
+        type: integer
+      id:
+        example: ""
+        type: string
+      instructor:
+        example: Kenji Romero
+        type: string
+      joinUrl:
+        example: https://meet.example.com/abc123
+        type: string
+      listPrice:
+        example: 49
+        type: number
+      maxAttendees:
+        example: 100
+        type: integer
+      registeredCount:
+        example: 0
+        type: integer
+      salePrice:
+        example: 29
+        type: number
+      scheduledAt:
+        example: "2025-09-01T10:00:00Z"
+        type: string
+      status:
+        example: published
+        type: string
+      title:
+        example: TypeScript Deep Dive
+        type: string
+      topic:
+        example: TypeScript
+        type: string
+    type: object
+  internal_handler.WishlistToggleRequest:
+    properties:
+      courseId:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@learnsphere.io
+    name: LearnSphere Support
+  description: REST API for the LearnSphere e-learning platform
+  license:
+    name: MIT
+  termsOfService: http://swagger.io/terms/
+  title: LearnSphere API
+  version: "1.0"
+paths:
+  /auth/interests:
+    put:
+      consumes:
+      - application/json
+      description: Replace the authenticated user's interest categories
+      parameters:
+      - description: Interest list
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.UpdateInterestsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update interests
+      tags:
+      - Auth
+  /auth/locale:
+    put:
+      consumes:
+      - application/json
+      description: Update the authenticated user's region and currency preference
+      parameters:
+      - description: Locale settings
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.UpdateLocaleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update locale
+      tags:
+      - Auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate with email and password, returns user + JWT token
+        pair
+      parameters:
+      - description: Login credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    tokens:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair'
+                    user:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      summary: Login
+      tags:
+      - Auth
+  /auth/me:
+    get:
+      description: Returns the authenticated user's profile including interests
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get current user
+      tags:
+      - Auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account, returns user + JWT token pair
+      parameters:
+      - description: Registration details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    tokens:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair'
+                    user:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "409":
+          description: Email already in use
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      summary: Register
+      tags:
+      - Auth
+  /auth/reset-password:
+    post:
+      consumes:
+      - application/json
+      description: Set a new password using a valid reset token
+      parameters:
+      - description: Token and new password
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      summary: Reset password
+      tags:
+      - Auth
+  /auth/reset-request:
+    post:
+      consumes:
+      - application/json
+      description: Send a password-reset token for the given email
+      parameters:
+      - description: Email address
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.ResetRequestBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    token:
+                      type: string
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      summary: Request password reset
+      tags:
+      - Auth
+  /chat:
+    delete:
+      description: Delete all chat messages for the authenticated user, optionally
+        scoped to a course
+      parameters:
+      - description: Scope reset to a course UUID
+        in: query
+        name: courseId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Reset chat history
+      tags:
+      - Chat
+    get:
+      description: Returns chat history for the authenticated user, optionally filtered
+        by course
+      parameters:
+      - description: Filter by course UUID
+        in: query
+        name: courseId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List chat messages
+      tags:
+      - Chat
+  /chat/messages:
+    post:
+      consumes:
+      - application/json
+      description: Add a new message (user or assistant) to the chat history
+      parameters:
+      - description: Message to append
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.AppendMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Append chat message
+      tags:
+      - Chat
+  /courses:
+    get:
+      description: Returns all courses with status=published, each with tags
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+                  type: array
+              type: object
+      summary: List published courses
+      tags:
+      - Courses
+    put:
+      consumes:
+      - application/json
+      description: If id is empty a new course is created; otherwise the existing
+        course is updated
+      parameters:
+      - description: Course payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.UpsertCourseRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create or update a course (admin)
+      tags:
+      - Courses
+  /courses/{id}:
+    delete:
+      description: Permanently deletes a course and its associated enrollments
+      parameters:
+      - description: Course UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a course (admin)
+      tags:
+      - Courses
+  /courses/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      description: Update the publication status of a course
+      parameters:
+      - description: Course UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: New status
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.SetCourseStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Set course status (admin)
+      tags:
+      - Courses
+  /courses/{slug}:
+    get:
+      description: 'Returns a published course with full detail: lessons, reviews,
+        quiz'
+      parameters:
+      - description: Course slug
+        example: foundations-of-typescript
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+              type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      summary: Get course by slug
+      tags:
+      - Courses
+  /courses/all:
+    get:
+      description: Returns every course regardless of status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List all courses (admin)
+      tags:
+      - Courses
+  /enrollments:
+    get:
+      description: Returns all course enrollments for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List my enrollments
+      tags:
+      - Enrollments
+    post:
+      consumes:
+      - application/json
+      description: Enroll the authenticated user in a course (free enroll; use /transactions
+        for paid)
+      parameters:
+      - description: Course to enroll in
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.EnrollRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Enroll in a course
+      tags:
+      - Enrollments
+  /enrollments/{courseId}:
+    get:
+      description: Returns the authenticated user's enrollment for a specific course
+      parameters:
+      - description: Course UUID
+        in: path
+        name: courseId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get enrollment
+      tags:
+      - Enrollments
+  /enrollments/{courseId}/lessons/{lessonId}/toggle:
+    patch:
+      description: Mark a lesson as complete or incomplete and return the updated
+        enrollment
+      parameters:
+      - description: Course UUID
+        in: path
+        name: courseId
+        required: true
+        type: string
+      - description: Lesson UUID
+        in: path
+        name: lessonId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Toggle lesson completion
+      tags:
+      - Enrollments
+  /enrollments/{courseId}/quiz/{quizId}/pass:
+    patch:
+      description: Record that the user has passed a quiz for a course enrollment
+      parameters:
+      - description: Course UUID
+        in: path
+        name: courseId
+        required: true
+        type: string
+      - description: Quiz UUID
+        in: path
+        name: quizId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Mark quiz passed
+      tags:
+      - Enrollments
+  /enrollments/{courseId}/time:
+    patch:
+      consumes:
+      - application/json
+      description: Add seconds to the total time spent on a course enrollment
+      parameters:
+      - description: Course UUID
+        in: path
+        name: courseId
+        required: true
+        type: string
+      - description: Seconds to add
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.RecordTimeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Record time spent
+      tags:
+      - Enrollments
+  /features:
+    get:
+      description: Returns all feature flags and their enabled state
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse'
+                  type: array
+              type: object
+      summary: List feature flags
+      tags:
+      - Features
+  /features/{name}/toggle:
+    patch:
+      description: Flip the enabled state of a named feature flag
+      parameters:
+      - description: Feature flag name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Toggle feature flag (admin)
+      tags:
+      - Features
+  /health:
+    get:
+      description: Returns service health status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    status:
+                      type: string
+                  type: object
+              type: object
+      summary: Health check
+      tags:
+      - Health
+  /live-sessions:
+    get:
+      description: Returns all live sessions with status=published
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse'
+                  type: array
+              type: object
+      summary: List published live sessions
+      tags:
+      - Live Sessions
+    put:
+      consumes:
+      - application/json
+      description: If id is empty a new session is created; otherwise the existing
+        session is updated
+      parameters:
+      - description: Session payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.UpsertLiveSessionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create or update a live session (admin)
+      tags:
+      - Live Sessions
+  /live-sessions/{id}:
+    delete:
+      description: Permanently deletes a live session
+      parameters:
+      - description: Session UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a live session (admin)
+      tags:
+      - Live Sessions
+  /live-sessions/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      description: Update the publication status of a live session
+      parameters:
+      - description: Session UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: New status
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.SetLiveSessionStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Set live session status (admin)
+      tags:
+      - Live Sessions
+  /live-sessions/all:
+    get:
+      description: Returns every live session regardless of status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List all live sessions (admin)
+      tags:
+      - Live Sessions
+  /locale/currencies:
+    get:
+      description: Returns all supported currencies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CurrencyResponse'
+                  type: array
+              type: object
+      summary: List currencies
+      tags:
+      - Locale
+  /locale/regions:
+    get:
+      description: Returns all supported regions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.RegionResponse'
+                  type: array
+              type: object
+      summary: List regions
+      tags:
+      - Locale
+  /stats/active-users:
+    get:
+      description: Returns distinct active user counts grouped by period (daily, weekly,
+        monthly)
+      parameters:
+      - default: daily
+        description: 'Grouping period: daily, weekly, monthly'
+        enum:
+        - daily
+        - weekly
+        - monthly
+        in: query
+        name: period
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Active users time series
+      tags:
+      - Stats
+  /stats/overview:
+    get:
+      description: Returns total users, courses, enrollments, and revenue
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.OverviewResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Admin overview stats
+      tags:
+      - Stats
+  /stats/revenue:
+    get:
+      description: Returns revenue grouped by period (daily, weekly, monthly)
+      parameters:
+      - default: daily
+        description: 'Grouping period: daily, weekly, monthly'
+        enum:
+        - daily
+        - weekly
+        - monthly
+        in: query
+        name: period
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Revenue time series
+      tags:
+      - Stats
+  /transactions:
+    get:
+      description: Returns all purchase transactions for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List my transactions
+      tags:
+      - Transactions
+    post:
+      consumes:
+      - application/json
+      description: Create a transaction and enrollment for the authenticated user
+      parameters:
+      - description: Course to purchase
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.PurchaseRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    enrollment:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse'
+                    transaction:
+                      $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse'
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Purchase a course
+      tags:
+      - Transactions
+  /transactions/all:
+    get:
+      description: Returns all transactions across all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List all transactions (admin)
+      tags:
+      - Transactions
+  /users:
+    get:
+      description: Returns all registered users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List users (admin)
+      tags:
+      - Users
+  /users/{id}:
+    delete:
+      description: Permanently delete a user account
+      parameters:
+      - description: User UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete user (admin)
+      tags:
+      - Users
+  /wishlist:
+    get:
+      description: Returns all wishlist items for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.WishlistItemResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: List wishlist
+      tags:
+      - Wishlist
+  /wishlist/toggle:
+    post:
+      consumes:
+      - application/json
+      description: Add a course to the wishlist if not present, remove it if already
+        present
+      parameters:
+      - description: Course to toggle
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler.WishlistToggleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response'
+            - properties:
+                data:
+                  properties:
+                    wishlisted:
+                      type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Toggle wishlist item
+      tags:
+      - Wishlist
+securityDefinitions:
+  BearerAuth:
+    description: 'Enter: Bearer <JWT token>'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
