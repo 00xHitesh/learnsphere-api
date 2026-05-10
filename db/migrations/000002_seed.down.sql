@@ -1,0 +1,10 @@
+DELETE FROM live_sessions;
+DELETE FROM promo_codes;
+DELETE FROM feature_flags;
+DELETE FROM course_tags;
+DELETE FROM courses;
+DELETE FROM tags;
+DELETE FROM user_interests;
+DELETE FROM users;
+DELETE FROM regions;
+DELETE FROM currencies;

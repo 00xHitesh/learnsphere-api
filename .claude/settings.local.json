@@ -2,7 +2,20 @@
   "permissions": {
     "allow": [
       "Bash(go build *)",
-      "Bash(go get *)"
+      "Bash(go get *)",
+      "Bash(go mod *)",
+      "Bash(sqlc version *)",
+      "Bash(where sqlc *)",
+      "Bash(go install *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(& \"C:\\\\Users\\\\Hitesh Narkhede\\\\go\\\\bin\\\\sqlc.exe\" version 2>&1)",
+      "PowerShell(go env *)",
+      "PowerShell(go install *)",
+      "PowerShell(ls \"C:\\\\Users\\\\Hitesh Narkhede\\\\go\\\\bin\\\\sqlc.exe\" 2>&1; & \"C:\\\\Users\\\\Hitesh Narkhede\\\\go\\\\bin\\\\sqlc.exe\" version 2>&1)",
+      "PowerShell(sqlc generate *)",
+      "PowerShell(go get *)",
+      "PowerShell(cd C:\\\\Projects\\\\learnsphere-api; $env:CGO_ENABLED = \"0\"; C:\\\\Users\\\\Hitesh` Narkhede\\\\go\\\\bin\\\\swag.exe init -g cmd/api/main.go --parseDependency --parseInternal 2>&1)",
+      "PowerShell(go build *)"
     ]
   }
 }

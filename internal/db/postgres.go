@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/user/learnsphere-api/internal/config"
+	"github.com/hitnarkhede/learnsphere-api/internal/config"
 )
 
 func NewPool(cfg *config.Config) (*pgxpool.Pool, error) {

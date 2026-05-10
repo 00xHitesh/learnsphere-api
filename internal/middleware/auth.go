@@ -4,9 +4,9 @@ import (
 	"strings"
 
 	"github.com/labstack/echo/v4"
-	"github.com/user/learnsphere-api/internal/config"
-	"github.com/user/learnsphere-api/pkg/jwt"
-	"github.com/user/learnsphere-api/pkg/response"
+	"github.com/hitnarkhede/learnsphere-api/internal/config"
+	"github.com/hitnarkhede/learnsphere-api/pkg/jwt"
+	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 func JWT(cfg *config.Config) echo.MiddlewareFunc {

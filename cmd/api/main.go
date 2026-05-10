@@ -1,3 +1,22 @@
+// Package main is the entry point for the LearnSphere API server.
+//
+//	@title			LearnSphere API
+//	@version		1.0
+//	@description	REST API for the LearnSphere e-learning platform
+//	@termsOfService	http://swagger.io/terms/
+//
+//	@contact.name	LearnSphere Support
+//	@contact.email	support@learnsphere.io
+//
+//	@license.name	MIT
+//
+//	@host		localhost:8080
+//	@BasePath	/api/v1
+//
+//	@securityDefinitions.apikey	BearerAuth
+//	@in							header
+//	@name						Authorization
+//	@description				Enter: Bearer <JWT token>
 package main
 
 import (
@@ -9,12 +28,17 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
-	"github.com/user/learnsphere-api/internal/config"
-	"github.com/user/learnsphere-api/internal/db"
-	"github.com/user/learnsphere-api/internal/handler"
-	"github.com/user/learnsphere-api/pkg/validator"
+	echoSwagger "github.com/swaggo/echo-swagger"
+	"github.com/hitnarkhede/learnsphere-api/internal/config"
+	"github.com/hitnarkhede/learnsphere-api/internal/db"
+	"github.com/hitnarkhede/learnsphere-api/internal/handler"
+	"github.com/hitnarkhede/learnsphere-api/internal/service"
+	"github.com/hitnarkhede/learnsphere-api/pkg/validator"
+
+	_ "github.com/hitnarkhede/learnsphere-api/docs"
 )
 
 func main() {
@@ -37,7 +61,7 @@ func main() {
 	e.Use(echomiddleware.CORS())
 	e.Use(echomiddleware.Secure())
 
-	registerRoutes(e, cfg)
+	registerRoutes(e, cfg, pool)
 
 	go func() {
 		if err := e.Start(":" + cfg.AppPort); err != nil && err != http.ErrServerClosed {
@@ -56,15 +80,23 @@ func main() {
 	}
 }
 
-func registerRoutes(e *echo.Echo, cfg *config.Config) {
-	health := handler.NewHealthHandler()
+func registerRoutes(e *echo.Echo, cfg *config.Config, pool *pgxpool.Pool) {
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
+	health := handler.NewHealthHandler()
 	e.GET("/health", health.Check)
 
 	v1 := e.Group("/api/v1")
-	_ = v1
-	// Register domain route groups here, e.g.:
-	// auth.RegisterRoutes(v1, cfg, pool)
-	// users.RegisterRoutes(v1, cfg, pool)
-	// courses.RegisterRoutes(v1, cfg, pool)
+
+	handler.NewAuthHandler(service.NewAuthService(pool, cfg)).RegisterRoutes(v1, cfg)
+	handler.NewCourseHandler(service.NewCourseService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewEnrollmentHandler(service.NewEnrollmentService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewUserHandler(service.NewUserService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewTransactionHandler(service.NewTransactionService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewWishlistHandler(service.NewWishlistService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewChatHandler(service.NewChatService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewStatsHandler(service.NewStatsService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewFeatureHandler(service.NewFeatureService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewLiveSessionHandler(service.NewLiveSessionService(pool)).RegisterRoutes(v1, cfg)
+	handler.NewLocaleHandler(service.NewLocaleService(pool)).RegisterRoutes(v1)
 }
