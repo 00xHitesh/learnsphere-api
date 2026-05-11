@@ -19,6 +19,7 @@ type mockAuthService struct {
 	updateLocaleFn    func(ctx context.Context, userID, regionCode, currencyCode string) (*service.UserResponse, error)
 	requestResetFn    func(ctx context.Context, email string) (string, error)
 	resetPasswordFn   func(ctx context.Context, token, password string) error
+	refreshTokenFn    func(ctx context.Context, refreshToken string) (*service.TokenPair, error)
 }
 
 func (m *mockAuthService) Login(ctx context.Context, email, password string) (*service.UserResponse, *service.TokenPair, error) {
@@ -68,6 +69,13 @@ func (m *mockAuthService) ResetPassword(ctx context.Context, token, password str
 		return m.resetPasswordFn(ctx, token, password)
 	}
 	return nil
+}
+
+func (m *mockAuthService) RefreshToken(ctx context.Context, refreshToken string) (*service.TokenPair, error) {
+	if m.refreshTokenFn != nil {
+		return m.refreshTokenFn(ctx, refreshToken)
+	}
+	return &service.TokenPair{AccessToken: "new-at", RefreshToken: "new-rt"}, nil
 }
 
 // mockCourseService

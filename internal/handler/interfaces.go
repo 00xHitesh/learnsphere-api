@@ -14,6 +14,7 @@ type authService interface {
 	UpdateLocale(ctx context.Context, userID, regionCode, currencyCode string) (*service.UserResponse, error)
 	RequestReset(ctx context.Context, email string) (string, error)
 	ResetPassword(ctx context.Context, token, password string) error
+	RefreshToken(ctx context.Context, refreshToken string) (*service.TokenPair, error)
 }
 
 type courseService interface {

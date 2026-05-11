@@ -23,6 +23,7 @@ func (h *AuthHandler) RegisterRoutes(v1 *echo.Group, cfg *config.Config) {
 	g.POST("/register", h.Register)
 	g.POST("/reset-request", h.RequestReset)
 	g.POST("/reset-password", h.ResetPassword)
+	g.POST("/refresh", h.Refresh)
 
 	secure := g.Group("", middleware.JWT(cfg))
 	secure.GET("/me", h.Me)
@@ -59,6 +60,36 @@ type ResetRequestBody struct {
 type ResetPasswordRequest struct {
 	Token    string `json:"token" example:"abc123def456"`
 	Password string `json:"password" example:"newpassword123"`
+}
+
+type RefreshTokenRequest struct {
+	RefreshToken string `json:"refreshToken" example:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."`
+}
+
+// Refresh godoc
+//
+//	@Summary		Refresh tokens
+//	@Description	Exchange a valid refresh token for a new access + refresh token pair
+//	@Tags			Auth
+//	@Accept			json
+//	@Produce		json
+//	@Param			body	body		RefreshTokenRequest	true	"Refresh token"
+//	@Success		200		{object}	response.Response{data=service.TokenPair}
+//	@Failure		400		{object}	response.ErrorResponse
+//	@Failure		401		{object}	response.ErrorResponse
+//	@Router			/auth/refresh [post]
+func (h *AuthHandler) Refresh(c echo.Context) error {
+	var body struct {
+		RefreshToken string `json:"refreshToken" validate:"required"`
+	}
+	if err := bindAndValidate(c, &body); err != nil {
+		return err
+	}
+	tokens, err := h.svc.RefreshToken(c.Request().Context(), body.RefreshToken)
+	if err != nil {
+		return response.Unauthorized(c, err.Error())
+	}
+	return response.OK(c, tokens)
 }
 
 // Login godoc

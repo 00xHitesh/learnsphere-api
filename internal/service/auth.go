@@ -169,6 +169,33 @@ func (s *AuthService) ResetPassword(ctx context.Context, token, password string)
 	return s.q.MarkResetTokenUsed(ctx, rt.ID)
 }
 
+func (s *AuthService) RefreshToken(ctx context.Context, refreshToken string) (*TokenPair, error) {
+	claims, err := jwt.ValidatToken(refreshToken, s.cfg.JWTRefreshSecret)
+	if err != nil {
+		return nil, fmt.Errorf("invalid or expired refresh token")
+	}
+	uid, err := parseUUID(claims.UserID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid token claims")
+	}
+	user, err := s.q.GetUserByID(ctx, uid)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, fmt.Errorf("user not found")
+		}
+		return nil, err
+	}
+	pair, err := jwt.GenerateTokenPair(
+		uuidToString(user.ID), user.Email, string(user.Role),
+		s.cfg.JWTAccessSecret, s.cfg.JWTRefreshSecret,
+		s.cfg.JWTAccessExpMin, s.cfg.JWTRefreshExpDay,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return &TokenPair{AccessToken: pair.AccessToken, RefreshToken: pair.RefreshToken}, nil
+}
+
 func (s *AuthService) buildAuthResponse(ctx context.Context, user repository.User) (*UserResponse, *TokenPair, error) {
 	interests, _ := s.q.GetUserInterests(ctx, user.ID)
 	pair, err := jwt.GenerateTokenPair(

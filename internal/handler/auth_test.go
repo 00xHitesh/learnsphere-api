@@ -252,3 +252,40 @@ func TestAuthResetPassword_ServiceError(t *testing.T) {
 
 	assertStatus(t, rec, http.StatusBadRequest)
 }
+
+func TestAuthRefresh_OK(t *testing.T) {
+	e := newEcho()
+	h := NewAuthHandler(&mockAuthService{})
+
+	c, rec := newCtx(e, http.MethodPost, "/auth/refresh", `{"refreshToken":"valid-refresh-token"}`)
+	if err := h.Refresh(c); err != nil {
+		t.Fatal(err)
+	}
+
+	assertStatus(t, rec, http.StatusOK)
+	assertSuccess(t, rec)
+}
+
+func TestAuthRefresh_ValidationError(t *testing.T) {
+	e := newEcho()
+	h := NewAuthHandler(&mockAuthService{})
+
+	c, rec := newCtx(e, http.MethodPost, "/auth/refresh", `{}`)
+	_ = h.Refresh(c)
+
+	assertStatus(t, rec, http.StatusBadRequest)
+}
+
+func TestAuthRefresh_InvalidToken(t *testing.T) {
+	e := newEcho()
+	h := NewAuthHandler(&mockAuthService{
+		refreshTokenFn: func(_ context.Context, _ string) (*service.TokenPair, error) {
+			return nil, errors.New("invalid or expired refresh token")
+		},
+	})
+
+	c, rec := newCtx(e, http.MethodPost, "/auth/refresh", `{"refreshToken":"expired-token"}`)
+	_ = h.Refresh(c)
+
+	assertStatus(t, rec, http.StatusUnauthorized)
+}
