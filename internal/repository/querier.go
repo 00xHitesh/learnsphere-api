@@ -17,8 +17,11 @@ type Querier interface {
 	DeleteChatMessages(ctx context.Context, sessionID pgtype.UUID) error
 	DeleteCourse(ctx context.Context, id pgtype.UUID) error
 	DeleteCourseTagsByCourse(ctx context.Context, courseID pgtype.UUID) error
+	DeleteLesson(ctx context.Context, arg DeleteLessonParams) error
 	DeleteLessonProgress(ctx context.Context, arg DeleteLessonProgressParams) error
 	DeleteLiveSession(ctx context.Context, id pgtype.UUID) error
+	DeleteQuiz(ctx context.Context, id pgtype.UUID) error
+	DeleteQuizQuestions(ctx context.Context, quizID pgtype.UUID) error
 	DeleteUser(ctx context.Context, id pgtype.UUID) error
 	DeleteUserInterests(ctx context.Context, userID pgtype.UUID) error
 	DeleteWishlistItem(ctx context.Context, arg DeleteWishlistItemParams) error
@@ -46,8 +49,12 @@ type Querier interface {
 	InsertCourse(ctx context.Context, arg InsertCourseParams) (Course, error)
 	InsertCourseTag(ctx context.Context, arg InsertCourseTagParams) error
 	InsertEnrollment(ctx context.Context, arg InsertEnrollmentParams) (Enrollment, error)
+	InsertLesson(ctx context.Context, arg InsertLessonParams) (Lesson, error)
 	InsertLessonProgress(ctx context.Context, arg InsertLessonProgressParams) error
 	InsertLiveSession(ctx context.Context, arg InsertLiveSessionParams) (LiveSession, error)
+	InsertQuiz(ctx context.Context, arg InsertQuizParams) (Quiz, error)
+	InsertQuizOption(ctx context.Context, arg InsertQuizOptionParams) error
+	InsertQuizQuestion(ctx context.Context, arg InsertQuizQuestionParams) (QuizQuestion, error)
 	InsertTransaction(ctx context.Context, arg InsertTransactionParams) (Transaction, error)
 	InsertUserInterest(ctx context.Context, arg InsertUserInterestParams) error
 	InsertWishlistItem(ctx context.Context, arg InsertWishlistItemParams) error
@@ -72,9 +79,11 @@ type Querier interface {
 	ToggleFeatureFlag(ctx context.Context, name string) (FeatureFlag, error)
 	UpdateCourse(ctx context.Context, arg UpdateCourseParams) (Course, error)
 	UpdateCourseStatus(ctx context.Context, arg UpdateCourseStatusParams) (Course, error)
+	UpdateLesson(ctx context.Context, arg UpdateLessonParams) (Lesson, error)
 	UpdateLiveSession(ctx context.Context, arg UpdateLiveSessionParams) (LiveSession, error)
 	UpdateLiveSessionStatus(ctx context.Context, arg UpdateLiveSessionStatusParams) (LiveSession, error)
 	UpdatePassedQuizIds(ctx context.Context, arg UpdatePassedQuizIdsParams) (Enrollment, error)
+	UpdateQuiz(ctx context.Context, arg UpdateQuizParams) (Quiz, error)
 	UpdateUserLocale(ctx context.Context, arg UpdateUserLocaleParams) (User, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) error
 	UpdateUserPoints(ctx context.Context, arg UpdateUserPointsParams) (User, error)

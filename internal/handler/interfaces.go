@@ -23,6 +23,10 @@ type courseService interface {
 	Upsert(ctx context.Context, p service.UpsertCourseParams) (*service.CourseResponse, error)
 	Delete(ctx context.Context, id string) error
 	SetStatus(ctx context.Context, id, status string) (*service.CourseResponse, error)
+	UpsertLesson(ctx context.Context, courseID string, p service.UpsertLessonParams) (*service.LessonResponse, error)
+	DeleteLesson(ctx context.Context, courseID, lessonID string) error
+	UpsertQuiz(ctx context.Context, courseID string, p service.UpsertQuizParams) (*service.QuizResponse, error)
+	DeleteQuiz(ctx context.Context, courseID string) error
 }
 
 type enrollmentService interface {

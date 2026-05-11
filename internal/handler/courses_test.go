@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"testing"
 
@@ -224,6 +225,160 @@ func TestCourseSetStatus_NotFound(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("c1")
 	_ = h.SetStatus(c)
+
+	assertStatus(t, rec, http.StatusNotFound)
+}
+
+func TestCourseUpsertLesson_OK(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/lessons", `{"title":"Intro","duration":"10:00","sortOrder":1}`)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	if err := h.UpsertLesson(c); err != nil {
+		t.Fatal(err)
+	}
+
+	assertStatus(t, rec, http.StatusOK)
+	assertSuccess(t, rec)
+}
+
+func TestCourseUpsertLesson_ValidationError(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/lessons", `{}`)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	_ = h.UpsertLesson(c)
+
+	assertStatus(t, rec, http.StatusBadRequest)
+}
+
+func TestCourseUpsertLesson_ServiceError(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{
+		upsertLessonFn: func(_ context.Context, _ string, _ service.UpsertLessonParams) (*service.LessonResponse, error) {
+			return nil, errMock
+		},
+	})
+
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/lessons", `{"title":"Intro","duration":"10:00","sortOrder":1}`)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	_ = h.UpsertLesson(c)
+
+	assertStatus(t, rec, http.StatusInternalServerError)
+}
+
+func TestCourseDeleteLesson_OK(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	c, rec := newCtx(e, http.MethodDelete, "/courses/c1/lessons/l1", "")
+	c.SetParamNames("id", "lessonId")
+	c.SetParamValues("c1", "l1")
+	if err := h.DeleteLesson(c); err != nil {
+		t.Fatal(err)
+	}
+
+	assertStatus(t, rec, http.StatusNoContent)
+}
+
+func TestCourseDeleteLesson_ServiceError(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{
+		deleteLessonFn: func(_ context.Context, _, _ string) error { return errMock },
+	})
+
+	c, rec := newCtx(e, http.MethodDelete, "/courses/c1/lessons/l1", "")
+	c.SetParamNames("id", "lessonId")
+	c.SetParamValues("c1", "l1")
+	_ = h.DeleteLesson(c)
+
+	assertStatus(t, rec, http.StatusInternalServerError)
+}
+
+func TestCourseUpsertQuiz_OK(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	body := `{
+		"title":"Quiz 1","passingScore":70,
+		"questions":[{"prompt":"Q1?","correctOptionKeys":["a"],"sortOrder":1,
+			"options":[{"optionKey":"a","text":"Option A","sortOrder":1}]}]
+	}`
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/quiz", body)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	if err := h.UpsertQuiz(c); err != nil {
+		t.Fatal(err)
+	}
+
+	assertStatus(t, rec, http.StatusOK)
+	assertSuccess(t, rec)
+}
+
+func TestCourseUpsertQuiz_ValidationError(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/quiz", `{}`)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	_ = h.UpsertQuiz(c)
+
+	assertStatus(t, rec, http.StatusBadRequest)
+}
+
+func TestCourseUpsertQuiz_ServiceError(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{
+		upsertQuizFn: func(_ context.Context, _ string, _ service.UpsertQuizParams) (*service.QuizResponse, error) {
+			return nil, errMock
+		},
+	})
+
+	body := `{
+		"title":"Quiz 1","passingScore":70,
+		"questions":[{"prompt":"Q1?","correctOptionKeys":["a"],"sortOrder":1,
+			"options":[{"optionKey":"a","text":"Option A","sortOrder":1}]}]
+	}`
+	c, rec := newCtx(e, http.MethodPut, "/courses/c1/quiz", body)
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	_ = h.UpsertQuiz(c)
+
+	assertStatus(t, rec, http.StatusInternalServerError)
+}
+
+func TestCourseDeleteQuiz_OK(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{})
+
+	c, rec := newCtx(e, http.MethodDelete, "/courses/c1/quiz", "")
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	if err := h.DeleteQuiz(c); err != nil {
+		t.Fatal(err)
+	}
+
+	assertStatus(t, rec, http.StatusNoContent)
+}
+
+func TestCourseDeleteQuiz_NotFound(t *testing.T) {
+	e := newEcho()
+	h := NewCourseHandler(&mockCourseService{
+		deleteQuizFn: func(_ context.Context, _ string) error {
+			return errors.New("quiz not found")
+		},
+	})
+
+	c, rec := newCtx(e, http.MethodDelete, "/courses/c1/quiz", "")
+	c.SetParamNames("id")
+	c.SetParamValues("c1")
+	_ = h.DeleteQuiz(c)
 
 	assertStatus(t, rec, http.StatusNotFound)
 }

@@ -89,6 +89,39 @@ type CourseResponse struct {
 	UpdatedAt     string          `json:"updatedAt"`
 }
 
+type UpsertLessonParams struct {
+	ID          string
+	Title       string
+	Duration    string
+	VideoURL    *string
+	IsPreview   bool
+	Description *string
+	SortOrder   int16
+}
+
+type UpsertQuizOptionParams struct {
+	OptionKey string
+	Text      string
+	SortOrder int16
+}
+
+type UpsertQuizQuestionParams struct {
+	Prompt            string
+	CorrectOptionKeys []string
+	IsMultiSelect     bool
+	Explanation       *string
+	SortOrder         int16
+	Options           []UpsertQuizOptionParams
+}
+
+type UpsertQuizParams struct {
+	ID           string
+	Title        string
+	Description  *string
+	PassingScore int16
+	Questions    []UpsertQuizQuestionParams
+}
+
 type UpsertCourseParams struct {
 	ID            string
 	Title         string
@@ -216,6 +249,184 @@ func (s *CourseService) SetStatus(ctx context.Context, id, status string) (*Cour
 	return &resp, nil
 }
 
+func (s *CourseService) UpsertLesson(ctx context.Context, courseID string, p UpsertLessonParams) (*LessonResponse, error) {
+	cid, err := parseUUID(courseID)
+	if err != nil {
+		return nil, err
+	}
+	videoURL := pgtype.Text{}
+	if p.VideoURL != nil {
+		videoURL = pgtype.Text{String: *p.VideoURL, Valid: true}
+	}
+	desc := pgtype.Text{}
+	if p.Description != nil {
+		desc = pgtype.Text{String: *p.Description, Valid: true}
+	}
+
+	var lesson repository.Lesson
+	if p.ID == "" {
+		lesson, err = s.q.InsertLesson(ctx, repository.InsertLessonParams{
+			CourseID:    cid,
+			Title:       p.Title,
+			Duration:    p.Duration,
+			VideoUrl:    videoURL,
+			IsPreview:   p.IsPreview,
+			Description: desc,
+			SortOrder:   p.SortOrder,
+		})
+	} else {
+		lid, parseErr := parseUUID(p.ID)
+		if parseErr != nil {
+			return nil, parseErr
+		}
+		lesson, err = s.q.UpdateLesson(ctx, repository.UpdateLessonParams{
+			ID:          lid,
+			CourseID:    cid,
+			Title:       p.Title,
+			Duration:    p.Duration,
+			VideoUrl:    videoURL,
+			IsPreview:   p.IsPreview,
+			Description: desc,
+			SortOrder:   p.SortOrder,
+		})
+		if err != nil && errors.Is(err, pgx.ErrNoRows) {
+			return nil, fmt.Errorf("lesson not found")
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	r := toLessonResponses([]repository.Lesson{lesson})
+	return &r[0], nil
+}
+
+func (s *CourseService) DeleteLesson(ctx context.Context, courseID, lessonID string) error {
+	cid, err := parseUUID(courseID)
+	if err != nil {
+		return err
+	}
+	lid, err := parseUUID(lessonID)
+	if err != nil {
+		return err
+	}
+	return s.q.DeleteLesson(ctx, repository.DeleteLessonParams{ID: lid, CourseID: cid})
+}
+
+func (s *CourseService) UpsertQuiz(ctx context.Context, courseID string, p UpsertQuizParams) (*QuizResponse, error) {
+	cid, err := parseUUID(courseID)
+	if err != nil {
+		return nil, err
+	}
+	desc := pgtype.Text{}
+	if p.Description != nil {
+		desc = pgtype.Text{String: *p.Description, Valid: true}
+	}
+
+	// resolve quiz record
+	var quiz repository.Quiz
+	existing, err := s.q.GetQuizByCourse(ctx, cid)
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return nil, err
+	}
+	if err == nil {
+		// update existing quiz
+		quiz, err = s.q.UpdateQuiz(ctx, repository.UpdateQuizParams{
+			ID:           existing.ID,
+			Title:        p.Title,
+			Description:  desc,
+			PassingScore: p.PassingScore,
+		})
+	} else {
+		// insert new quiz
+		quiz, err = s.q.InsertQuiz(ctx, repository.InsertQuizParams{
+			CourseID:     cid,
+			Title:        p.Title,
+			Description:  desc,
+			PassingScore: p.PassingScore,
+		})
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	// replace questions and options
+	if err := s.q.DeleteQuizQuestions(ctx, quiz.ID); err != nil {
+		return nil, err
+	}
+	questions := make([]repository.QuizQuestion, 0, len(p.Questions))
+	allOpts := []repository.QuizOption{}
+	for _, qp := range p.Questions {
+		expl := pgtype.Text{}
+		if qp.Explanation != nil {
+			expl = pgtype.Text{String: *qp.Explanation, Valid: true}
+		}
+		keys := qp.CorrectOptionKeys
+		if keys == nil {
+			keys = []string{}
+		}
+		q, err := s.q.InsertQuizQuestion(ctx, repository.InsertQuizQuestionParams{
+			QuizID:            quiz.ID,
+			Prompt:            qp.Prompt,
+			CorrectOptionKeys: keys,
+			IsMultiSelect:     qp.IsMultiSelect,
+			Explanation:       expl,
+			SortOrder:         qp.SortOrder,
+		})
+		if err != nil {
+			return nil, err
+		}
+		questions = append(questions, q)
+		for _, op := range qp.Options {
+			if err := s.q.InsertQuizOption(ctx, repository.InsertQuizOptionParams{
+				QuestionID: q.ID,
+				OptionKey:  op.OptionKey,
+				Text:       op.Text,
+				SortOrder:  op.SortOrder,
+			}); err != nil {
+				return nil, err
+			}
+			allOpts = append(allOpts, repository.QuizOption{
+				ID:         q.ID, // placeholder — not returned by InsertQuizOption
+				QuestionID: q.ID,
+				OptionKey:  op.OptionKey,
+				Text:       op.Text,
+				SortOrder:  op.SortOrder,
+			})
+		}
+	}
+
+	// re-fetch options with real IDs
+	qIDs := make([]pgtype.UUID, len(questions))
+	for i, q := range questions {
+		qIDs[i] = q.ID
+	}
+	if len(qIDs) > 0 {
+		allOpts, err = s.q.ListQuizOptions(ctx, qIDs)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		allOpts = []repository.QuizOption{}
+	}
+
+	return toQuizResponse(quiz, questions, allOpts), nil
+}
+
+func (s *CourseService) DeleteQuiz(ctx context.Context, courseID string) error {
+	cid, err := parseUUID(courseID)
+	if err != nil {
+		return err
+	}
+	quiz, err := s.q.GetQuizByCourse(ctx, cid)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return fmt.Errorf("quiz not found")
+		}
+		return err
+	}
+	return s.q.DeleteQuiz(ctx, quiz.ID)
+}
+
 func (s *CourseService) syncTags(ctx context.Context, courseID pgtype.UUID, tagNames []string) error {
 	if err := s.q.DeleteCourseTagsByCourse(ctx, courseID); err != nil {
 		return err
@@ -334,6 +545,8 @@ func toCourseResponse(c repository.Course) CourseResponse {
 		Cover:         c.Cover,
 		Status:        string(c.Status),
 		Tags:          []string{},
+		Lessons:       []LessonResponse{},
+		Reviews:       []ReviewResponse{},
 		CreatedAt:     c.CreatedAt.Time.Format("2006-01-02T15:04:05Z07:00"),
 		UpdatedAt:     c.UpdatedAt.Time.Format("2006-01-02T15:04:05Z07:00"),
 	}

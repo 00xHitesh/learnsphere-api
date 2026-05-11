@@ -47,7 +47,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.UpdateInterestsRequest"
+                            "$ref": "#/definitions/handler.UpdateInterestsRequest"
                         }
                     }
                 ],
@@ -57,13 +57,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                            "$ref": "#/definitions/service.UserResponse"
                                         }
                                     }
                                 }
@@ -73,13 +73,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -110,7 +110,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.UpdateLocaleRequest"
+                            "$ref": "#/definitions/handler.UpdateLocaleRequest"
                         }
                     }
                 ],
@@ -120,13 +120,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                            "$ref": "#/definitions/service.UserResponse"
                                         }
                                     }
                                 }
@@ -136,13 +136,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -168,7 +168,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.LoginRequest"
+                            "$ref": "#/definitions/handler.LoginRequest"
                         }
                     }
                 ],
@@ -178,7 +178,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -187,10 +187,10 @@ const docTemplate = `{
                                             "type": "object",
                                             "properties": {
                                                 "tokens": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair"
+                                                    "$ref": "#/definitions/service.TokenPair"
                                                 },
                                                 "user": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                                    "$ref": "#/definitions/service.UserResponse"
                                                 }
                                             }
                                         }
@@ -202,13 +202,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -235,13 +235,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                            "$ref": "#/definitions/service.UserResponse"
                                         }
                                     }
                                 }
@@ -251,13 +251,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -283,7 +283,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.RegisterRequest"
+                            "$ref": "#/definitions/handler.RegisterRequest"
                         }
                     }
                 ],
@@ -293,7 +293,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -302,10 +302,10 @@ const docTemplate = `{
                                             "type": "object",
                                             "properties": {
                                                 "tokens": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair"
+                                                    "$ref": "#/definitions/service.TokenPair"
                                                 },
                                                 "user": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                                    "$ref": "#/definitions/service.UserResponse"
                                                 }
                                             }
                                         }
@@ -317,13 +317,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "409": {
                         "description": "Email already in use",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -349,7 +349,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.ResetPasswordRequest"
+                            "$ref": "#/definitions/handler.ResetPasswordRequest"
                         }
                     }
                 ],
@@ -360,7 +360,7 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -386,7 +386,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.ResetRequestBody"
+                            "$ref": "#/definitions/handler.ResetRequestBody"
                         }
                     }
                 ],
@@ -396,7 +396,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -417,7 +417,7 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -452,7 +452,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -460,7 +460,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse"
+                                                "$ref": "#/definitions/service.ChatMessageResponse"
                                             }
                                         }
                                     }
@@ -471,7 +471,7 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -505,7 +505,7 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -536,7 +536,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.AppendMessageRequest"
+                            "$ref": "#/definitions/handler.AppendMessageRequest"
                         }
                     }
                 ],
@@ -546,13 +546,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse"
+                                            "$ref": "#/definitions/service.ChatMessageResponse"
                                         }
                                     }
                                 }
@@ -562,13 +562,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -590,7 +590,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -598,7 +598,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
+                                                "$ref": "#/definitions/service.CourseResponse"
                                             }
                                         }
                                     }
@@ -632,7 +632,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.UpsertCourseRequest"
+                            "$ref": "#/definitions/handler.UpsertCourseRequest"
                         }
                     }
                 ],
@@ -642,13 +642,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
+                                            "$ref": "#/definitions/service.CourseResponse"
                                         }
                                     }
                                 }
@@ -658,19 +658,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -697,7 +697,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -705,7 +705,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
+                                                "$ref": "#/definitions/service.CourseResponse"
                                             }
                                         }
                                     }
@@ -716,13 +716,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -759,14 +759,175 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
+                    }
+                }
+            }
+        },
+        "/courses/{id}/lessons": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Create or update a lesson (admin)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Course UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/service.LessonResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/{id}/lessons/{lessonId}": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Delete a lesson (admin)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Course UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Lesson UUID",
+                        "name": "lessonId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/courses/{id}/quiz": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Create or replace the quiz for a course (admin)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Course UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/service.QuizResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Delete the quiz for a course (admin)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Course UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
                     }
                 }
             }
@@ -803,7 +964,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.SetCourseStatusRequest"
+                            "$ref": "#/definitions/handler.SetCourseStatusRequest"
                         }
                     }
                 ],
@@ -813,13 +974,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
+                                            "$ref": "#/definitions/service.CourseResponse"
                                         }
                                     }
                                 }
@@ -829,25 +990,25 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -879,13 +1040,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
+                                            "$ref": "#/definitions/service.CourseResponse"
                                         }
                                     }
                                 }
@@ -895,7 +1056,7 @@ const docTemplate = `{
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -922,7 +1083,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -930,7 +1091,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                                "$ref": "#/definitions/service.EnrollmentResponse"
                                             }
                                         }
                                     }
@@ -941,7 +1102,7 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -970,7 +1131,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.EnrollRequest"
+                            "$ref": "#/definitions/handler.EnrollRequest"
                         }
                     }
                 ],
@@ -980,13 +1141,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                            "$ref": "#/definitions/service.EnrollmentResponse"
                                         }
                                     }
                                 }
@@ -996,13 +1157,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1038,13 +1199,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                            "$ref": "#/definitions/service.EnrollmentResponse"
                                         }
                                     }
                                 }
@@ -1054,13 +1215,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1103,13 +1264,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                            "$ref": "#/definitions/service.EnrollmentResponse"
                                         }
                                     }
                                 }
@@ -1119,19 +1280,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1174,13 +1335,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                            "$ref": "#/definitions/service.EnrollmentResponse"
                                         }
                                     }
                                 }
@@ -1190,13 +1351,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1234,7 +1395,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.RecordTimeRequest"
+                            "$ref": "#/definitions/handler.RecordTimeRequest"
                         }
                     }
                 ],
@@ -1244,13 +1405,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                            "$ref": "#/definitions/service.EnrollmentResponse"
                                         }
                                     }
                                 }
@@ -1260,19 +1421,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1294,7 +1455,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1302,7 +1463,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse"
+                                                "$ref": "#/definitions/service.FeatureFlagResponse"
                                             }
                                         }
                                     }
@@ -1343,13 +1504,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse"
+                                            "$ref": "#/definitions/service.FeatureFlagResponse"
                                         }
                                     }
                                 }
@@ -1359,13 +1520,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1387,7 +1548,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1424,7 +1585,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1432,7 +1593,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse"
+                                                "$ref": "#/definitions/service.LiveSessionResponse"
                                             }
                                         }
                                     }
@@ -1466,7 +1627,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.UpsertLiveSessionRequest"
+                            "$ref": "#/definitions/handler.UpsertLiveSessionRequest"
                         }
                     }
                 ],
@@ -1476,13 +1637,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse"
+                                            "$ref": "#/definitions/service.LiveSessionResponse"
                                         }
                                     }
                                 }
@@ -1492,19 +1653,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1531,7 +1692,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1539,7 +1700,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse"
+                                                "$ref": "#/definitions/service.LiveSessionResponse"
                                             }
                                         }
                                     }
@@ -1550,13 +1711,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1593,13 +1754,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1637,7 +1798,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.SetLiveSessionStatusRequest"
+                            "$ref": "#/definitions/handler.SetLiveSessionStatusRequest"
                         }
                     }
                 ],
@@ -1647,13 +1808,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse"
+                                            "$ref": "#/definitions/service.LiveSessionResponse"
                                         }
                                     }
                                 }
@@ -1663,25 +1824,25 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1703,7 +1864,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1711,7 +1872,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CurrencyResponse"
+                                                "$ref": "#/definitions/service.CurrencyResponse"
                                             }
                                         }
                                     }
@@ -1738,7 +1899,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1746,7 +1907,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.RegionResponse"
+                                                "$ref": "#/definitions/service.RegionResponse"
                                             }
                                         }
                                     }
@@ -1792,7 +1953,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1800,7 +1961,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint"
+                                                "$ref": "#/definitions/service.PeriodPoint"
                                             }
                                         }
                                     }
@@ -1811,13 +1972,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1844,13 +2005,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.OverviewResponse"
+                                            "$ref": "#/definitions/service.OverviewResponse"
                                         }
                                     }
                                 }
@@ -1860,13 +2021,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1907,7 +2068,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1915,7 +2076,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint"
+                                                "$ref": "#/definitions/service.PeriodPoint"
                                             }
                                         }
                                     }
@@ -1926,13 +2087,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -1959,7 +2120,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1967,7 +2128,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse"
+                                                "$ref": "#/definitions/service.TransactionResponse"
                                             }
                                         }
                                     }
@@ -1978,7 +2139,7 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2007,7 +2168,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.PurchaseRequest"
+                            "$ref": "#/definitions/handler.PurchaseRequest"
                         }
                     }
                 ],
@@ -2017,7 +2178,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -2026,10 +2187,10 @@ const docTemplate = `{
                                             "type": "object",
                                             "properties": {
                                                 "enrollment": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse"
+                                                    "$ref": "#/definitions/service.EnrollmentResponse"
                                                 },
                                                 "transaction": {
-                                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse"
+                                                    "$ref": "#/definitions/service.TransactionResponse"
                                                 }
                                             }
                                         }
@@ -2041,13 +2202,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2074,7 +2235,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -2082,7 +2243,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse"
+                                                "$ref": "#/definitions/service.TransactionResponse"
                                             }
                                         }
                                     }
@@ -2093,13 +2254,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2126,7 +2287,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -2134,7 +2295,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse"
+                                                "$ref": "#/definitions/service.UserResponse"
                                             }
                                         }
                                     }
@@ -2145,13 +2306,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2188,13 +2349,13 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2221,7 +2382,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -2229,7 +2390,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.WishlistItemResponse"
+                                                "$ref": "#/definitions/service.WishlistItemResponse"
                                             }
                                         }
                                     }
@@ -2240,7 +2401,7 @@ const docTemplate = `{
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2271,7 +2432,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.WishlistToggleRequest"
+                            "$ref": "#/definitions/handler.WishlistToggleRequest"
                         }
                     }
                 ],
@@ -2281,7 +2442,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.Response"
+                                    "$ref": "#/definitions/response.Response"
                                 },
                                 {
                                     "type": "object",
@@ -2302,13 +2463,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse"
+                            "$ref": "#/definitions/response.ErrorResponse"
                         }
                     }
                 }
@@ -2316,511 +2477,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_hitnarkhede_learnsphere-api_internal_service.ChatMessageResponse": {
-            "type": "object",
-            "properties": {
-                "content": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "role": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "cover": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "instructor": {
-                    "type": "string"
-                },
-                "instructorBio": {
-                    "type": "string"
-                },
-                "lessons": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.LessonResponse"
-                    }
-                },
-                "level": {
-                    "type": "string"
-                },
-                "listPrice": {
-                    "type": "number"
-                },
-                "quiz": {
-                    "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizResponse"
-                },
-                "rating": {
-                    "type": "number"
-                },
-                "reviews": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.ReviewResponse"
-                    }
-                },
-                "salePrice": {
-                    "type": "number"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "studentCount": {
-                    "type": "integer"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "title": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.CurrencyResponse": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "rateVsUsd": {
-                    "type": "number"
-                },
-                "symbol": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.EnrollmentResponse": {
-            "type": "object",
-            "properties": {
-                "completedLessonIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "courseId": {
-                    "type": "string"
-                },
-                "enrolledAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "passedQuizIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "timeSpentSeconds": {
-                    "type": "integer"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.FeatureFlagResponse": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.LessonResponse": {
-            "type": "object",
-            "properties": {
-                "courseId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "duration": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "isPreview": {
-                    "type": "boolean"
-                },
-                "sortOrder": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "videoUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.LiveSessionResponse": {
-            "type": "object",
-            "properties": {
-                "courseId": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "durationMinutes": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "instructor": {
-                    "type": "string"
-                },
-                "joinUrl": {
-                    "type": "string"
-                },
-                "listPrice": {
-                    "type": "number"
-                },
-                "maxAttendees": {
-                    "type": "integer"
-                },
-                "registeredCount": {
-                    "type": "integer"
-                },
-                "salePrice": {
-                    "type": "number"
-                },
-                "scheduledAt": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "topic": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.OverviewResponse": {
-            "type": "object",
-            "properties": {
-                "revenue": {
-                    "type": "number"
-                },
-                "topCourses": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.CourseResponse"
-                    }
-                },
-                "totalCourses": {
-                    "type": "integer"
-                },
-                "totalEnrollments": {
-                    "type": "integer"
-                },
-                "totalUsers": {
-                    "type": "integer"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.PeriodPoint": {
-            "type": "object",
-            "properties": {
-                "label": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "number"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.QuizOptionResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "optionKey": {
-                    "type": "string"
-                },
-                "text": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.QuizQuestionResponse": {
-            "type": "object",
-            "properties": {
-                "correctOptionKeys": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "explanation": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "isMultiSelect": {
-                    "type": "boolean"
-                },
-                "options": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizOptionResponse"
-                    }
-                },
-                "prompt": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.QuizResponse": {
-            "type": "object",
-            "properties": {
-                "courseId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "passingScore": {
-                    "type": "integer"
-                },
-                "questions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_hitnarkhede_learnsphere-api_internal_service.QuizQuestionResponse"
-                    }
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.RegionResponse": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "defaultCurrencyCode": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.ReviewResponse": {
-            "type": "object",
-            "properties": {
-                "comment": {
-                    "type": "string"
-                },
-                "courseId": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "rating": {
-                    "type": "integer"
-                },
-                "reviewedAt": {
-                    "type": "string"
-                },
-                "reviewerName": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.TokenPair": {
-            "type": "object",
-            "properties": {
-                "accessToken": {
-                    "type": "string"
-                },
-                "refreshToken": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.TransactionResponse": {
-            "type": "object",
-            "properties": {
-                "amount": {
-                    "type": "number"
-                },
-                "courseId": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.UserResponse": {
-            "type": "object",
-            "properties": {
-                "avatarUrl": {
-                    "type": "string"
-                },
-                "bio": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "currencyCode": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "interests": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "points": {
-                    "type": "integer"
-                },
-                "regionCode": {
-                    "type": "string"
-                },
-                "role": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_internal_service.WishlistItemResponse": {
-            "type": "object",
-            "properties": {
-                "addedAt": {
-                    "type": "string"
-                },
-                "courseId": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_pkg_response.ErrorResponse": {
-            "type": "object",
-            "properties": {
-                "errors": {},
-                "message": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "github_com_hitnarkhede_learnsphere-api_pkg_response.Response": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "message": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "internal_handler.AppendMessageRequest": {
+        "handler.AppendMessageRequest": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2837,7 +2494,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.EnrollRequest": {
+        "handler.EnrollRequest": {
             "type": "object",
             "properties": {
                 "courseId": {
@@ -2846,7 +2503,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.LoginRequest": {
+        "handler.LoginRequest": {
             "type": "object",
             "properties": {
                 "email": {
@@ -2859,7 +2516,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.PurchaseRequest": {
+        "handler.PurchaseRequest": {
             "type": "object",
             "properties": {
                 "courseId": {
@@ -2868,7 +2525,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.RecordTimeRequest": {
+        "handler.RecordTimeRequest": {
             "type": "object",
             "properties": {
                 "seconds": {
@@ -2877,7 +2534,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.RegisterRequest": {
+        "handler.RegisterRequest": {
             "type": "object",
             "properties": {
                 "email": {
@@ -2894,7 +2551,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.ResetPasswordRequest": {
+        "handler.ResetPasswordRequest": {
             "type": "object",
             "properties": {
                 "password": {
@@ -2907,7 +2564,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.ResetRequestBody": {
+        "handler.ResetRequestBody": {
             "type": "object",
             "properties": {
                 "email": {
@@ -2916,7 +2573,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.SetCourseStatusRequest": {
+        "handler.SetCourseStatusRequest": {
             "type": "object",
             "properties": {
                 "status": {
@@ -2925,7 +2582,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.SetLiveSessionStatusRequest": {
+        "handler.SetLiveSessionStatusRequest": {
             "type": "object",
             "properties": {
                 "status": {
@@ -2934,7 +2591,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.UpdateInterestsRequest": {
+        "handler.UpdateInterestsRequest": {
             "type": "object",
             "properties": {
                 "interests": {
@@ -2949,7 +2606,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.UpdateLocaleRequest": {
+        "handler.UpdateLocaleRequest": {
             "type": "object",
             "properties": {
                 "currencyCode": {
@@ -2962,7 +2619,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.UpsertCourseRequest": {
+        "handler.UpsertCourseRequest": {
             "type": "object",
             "properties": {
                 "category": {
@@ -3029,7 +2686,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.UpsertLiveSessionRequest": {
+        "handler.UpsertLiveSessionRequest": {
             "type": "object",
             "properties": {
                 "courseId": {
@@ -3090,12 +2747,516 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_handler.WishlistToggleRequest": {
+        "handler.WishlistToggleRequest": {
             "type": "object",
             "properties": {
                 "courseId": {
                     "type": "string",
                     "example": "550e8400-e29b-41d4-a716-446655440000"
+                }
+            }
+        },
+        "response.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "errors": {},
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "response.Response": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "service.ChatMessageResponse": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.CourseResponse": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "cover": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "instructor": {
+                    "type": "string"
+                },
+                "instructorBio": {
+                    "type": "string"
+                },
+                "lessons": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/service.LessonResponse"
+                    }
+                },
+                "level": {
+                    "type": "string"
+                },
+                "listPrice": {
+                    "type": "number"
+                },
+                "quiz": {
+                    "$ref": "#/definitions/service.QuizResponse"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/service.ReviewResponse"
+                    }
+                },
+                "salePrice": {
+                    "type": "number"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "studentCount": {
+                    "type": "integer"
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.CurrencyResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rateVsUsd": {
+                    "type": "number"
+                },
+                "symbol": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.EnrollmentResponse": {
+            "type": "object",
+            "properties": {
+                "completedLessonIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "courseId": {
+                    "type": "string"
+                },
+                "enrolledAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "passedQuizIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "timeSpentSeconds": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.FeatureFlagResponse": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.LessonResponse": {
+            "type": "object",
+            "properties": {
+                "courseId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isPreview": {
+                    "type": "boolean"
+                },
+                "sortOrder": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "videoUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.LiveSessionResponse": {
+            "type": "object",
+            "properties": {
+                "courseId": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "durationMinutes": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "instructor": {
+                    "type": "string"
+                },
+                "joinUrl": {
+                    "type": "string"
+                },
+                "listPrice": {
+                    "type": "number"
+                },
+                "maxAttendees": {
+                    "type": "integer"
+                },
+                "registeredCount": {
+                    "type": "integer"
+                },
+                "salePrice": {
+                    "type": "number"
+                },
+                "scheduledAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "topic": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.OverviewResponse": {
+            "type": "object",
+            "properties": {
+                "revenue": {
+                    "type": "number"
+                },
+                "topCourses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/service.CourseResponse"
+                    }
+                },
+                "totalCourses": {
+                    "type": "integer"
+                },
+                "totalEnrollments": {
+                    "type": "integer"
+                },
+                "totalUsers": {
+                    "type": "integer"
+                }
+            }
+        },
+        "service.PeriodPoint": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "service.QuizOptionResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "optionKey": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.QuizQuestionResponse": {
+            "type": "object",
+            "properties": {
+                "correctOptionKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "explanation": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isMultiSelect": {
+                    "type": "boolean"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/service.QuizOptionResponse"
+                    }
+                },
+                "prompt": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.QuizResponse": {
+            "type": "object",
+            "properties": {
+                "courseId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "passingScore": {
+                    "type": "integer"
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/service.QuizQuestionResponse"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.RegionResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "defaultCurrencyCode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.ReviewResponse": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "courseId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "reviewedAt": {
+                    "type": "string"
+                },
+                "reviewerName": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.TokenPair": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.TransactionResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "courseId": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.UserResponse": {
+            "type": "object",
+            "properties": {
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currencyCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "interests": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "points": {
+                    "type": "integer"
+                },
+                "regionCode": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.WishlistItemResponse": {
+            "type": "object",
+            "properties": {
+                "addedAt": {
+                    "type": "string"
+                },
+                "courseId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
                 }
             }
         }

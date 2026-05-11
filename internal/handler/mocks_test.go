@@ -79,6 +79,10 @@ type mockCourseService struct {
 	upsertFn        func(ctx context.Context, p service.UpsertCourseParams) (*service.CourseResponse, error)
 	deleteFn        func(ctx context.Context, id string) error
 	setStatusFn     func(ctx context.Context, id, status string) (*service.CourseResponse, error)
+	upsertLessonFn  func(ctx context.Context, courseID string, p service.UpsertLessonParams) (*service.LessonResponse, error)
+	deleteLessonFn  func(ctx context.Context, courseID, lessonID string) error
+	upsertQuizFn    func(ctx context.Context, courseID string, p service.UpsertQuizParams) (*service.QuizResponse, error)
+	deleteQuizFn    func(ctx context.Context, courseID string) error
 }
 
 func (m *mockCourseService) ListPublished(ctx context.Context) ([]service.CourseResponse, error) {
@@ -121,6 +125,34 @@ func (m *mockCourseService) SetStatus(ctx context.Context, id, status string) (*
 		return m.setStatusFn(ctx, id, status)
 	}
 	return &service.CourseResponse{ID: id, Status: status}, nil
+}
+
+func (m *mockCourseService) UpsertLesson(ctx context.Context, courseID string, p service.UpsertLessonParams) (*service.LessonResponse, error) {
+	if m.upsertLessonFn != nil {
+		return m.upsertLessonFn(ctx, courseID, p)
+	}
+	return &service.LessonResponse{ID: "l1", CourseID: courseID, Title: p.Title}, nil
+}
+
+func (m *mockCourseService) DeleteLesson(ctx context.Context, courseID, lessonID string) error {
+	if m.deleteLessonFn != nil {
+		return m.deleteLessonFn(ctx, courseID, lessonID)
+	}
+	return nil
+}
+
+func (m *mockCourseService) UpsertQuiz(ctx context.Context, courseID string, p service.UpsertQuizParams) (*service.QuizResponse, error) {
+	if m.upsertQuizFn != nil {
+		return m.upsertQuizFn(ctx, courseID, p)
+	}
+	return &service.QuizResponse{ID: "q1", CourseID: courseID, Title: p.Title, Questions: []service.QuizQuestionResponse{}}, nil
+}
+
+func (m *mockCourseService) DeleteQuiz(ctx context.Context, courseID string) error {
+	if m.deleteQuizFn != nil {
+		return m.deleteQuizFn(ctx, courseID)
+	}
+	return nil
 }
 
 // mockEnrollmentService

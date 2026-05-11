@@ -29,6 +29,38 @@ func (q *Queries) DeleteCourseTagsByCourse(ctx context.Context, courseID pgtype.
 	return err
 }
 
+const deleteLesson = `-- name: DeleteLesson :exec
+DELETE FROM lessons WHERE id = $1 AND course_id = $2
+`
+
+type DeleteLessonParams struct {
+	ID       pgtype.UUID `db:"id" json:"id"`
+	CourseID pgtype.UUID `db:"course_id" json:"course_id"`
+}
+
+func (q *Queries) DeleteLesson(ctx context.Context, arg DeleteLessonParams) error {
+	_, err := q.db.Exec(ctx, deleteLesson, arg.ID, arg.CourseID)
+	return err
+}
+
+const deleteQuiz = `-- name: DeleteQuiz :exec
+DELETE FROM quizzes WHERE id = $1
+`
+
+func (q *Queries) DeleteQuiz(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteQuiz, id)
+	return err
+}
+
+const deleteQuizQuestions = `-- name: DeleteQuizQuestions :exec
+DELETE FROM quiz_questions WHERE quiz_id = $1
+`
+
+func (q *Queries) DeleteQuizQuestions(ctx context.Context, quizID pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteQuizQuestions, quizID)
+	return err
+}
+
 const getCourseByID = `-- name: GetCourseByID :one
 SELECT id, title, slug, description, summary, category, level, list_price, sale_price, rating, student_count, instructor, instructor_bio, cover, status, created_at, updated_at, fts_vector FROM courses WHERE id = $1 LIMIT 1
 `
@@ -259,6 +291,138 @@ type InsertCourseTagParams struct {
 func (q *Queries) InsertCourseTag(ctx context.Context, arg InsertCourseTagParams) error {
 	_, err := q.db.Exec(ctx, insertCourseTag, arg.CourseID, arg.TagID)
 	return err
+}
+
+const insertLesson = `-- name: InsertLesson :one
+INSERT INTO lessons (course_id, title, duration, video_url, is_preview, description, sort_order)
+VALUES ($1, $2, $3, $4, $5, $6, $7)
+RETURNING id, course_id, title, duration, video_url, is_preview, description, sort_order, created_at
+`
+
+type InsertLessonParams struct {
+	CourseID    pgtype.UUID `db:"course_id" json:"course_id"`
+	Title       string      `db:"title" json:"title"`
+	Duration    string      `db:"duration" json:"duration"`
+	VideoUrl    pgtype.Text `db:"video_url" json:"video_url"`
+	IsPreview   bool        `db:"is_preview" json:"is_preview"`
+	Description pgtype.Text `db:"description" json:"description"`
+	SortOrder   int16       `db:"sort_order" json:"sort_order"`
+}
+
+func (q *Queries) InsertLesson(ctx context.Context, arg InsertLessonParams) (Lesson, error) {
+	row := q.db.QueryRow(ctx, insertLesson,
+		arg.CourseID,
+		arg.Title,
+		arg.Duration,
+		arg.VideoUrl,
+		arg.IsPreview,
+		arg.Description,
+		arg.SortOrder,
+	)
+	var i Lesson
+	err := row.Scan(
+		&i.ID,
+		&i.CourseID,
+		&i.Title,
+		&i.Duration,
+		&i.VideoUrl,
+		&i.IsPreview,
+		&i.Description,
+		&i.SortOrder,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
+const insertQuiz = `-- name: InsertQuiz :one
+INSERT INTO quizzes (course_id, title, description, passing_score)
+VALUES ($1, $2, $3, $4)
+RETURNING id, course_id, title, description, passing_score, created_at
+`
+
+type InsertQuizParams struct {
+	CourseID     pgtype.UUID `db:"course_id" json:"course_id"`
+	Title        string      `db:"title" json:"title"`
+	Description  pgtype.Text `db:"description" json:"description"`
+	PassingScore int16       `db:"passing_score" json:"passing_score"`
+}
+
+func (q *Queries) InsertQuiz(ctx context.Context, arg InsertQuizParams) (Quiz, error) {
+	row := q.db.QueryRow(ctx, insertQuiz,
+		arg.CourseID,
+		arg.Title,
+		arg.Description,
+		arg.PassingScore,
+	)
+	var i Quiz
+	err := row.Scan(
+		&i.ID,
+		&i.CourseID,
+		&i.Title,
+		&i.Description,
+		&i.PassingScore,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
+const insertQuizOption = `-- name: InsertQuizOption :exec
+INSERT INTO quiz_options (question_id, option_key, text, sort_order)
+VALUES ($1, $2, $3, $4)
+`
+
+type InsertQuizOptionParams struct {
+	QuestionID pgtype.UUID `db:"question_id" json:"question_id"`
+	OptionKey  string      `db:"option_key" json:"option_key"`
+	Text       string      `db:"text" json:"text"`
+	SortOrder  int16       `db:"sort_order" json:"sort_order"`
+}
+
+func (q *Queries) InsertQuizOption(ctx context.Context, arg InsertQuizOptionParams) error {
+	_, err := q.db.Exec(ctx, insertQuizOption,
+		arg.QuestionID,
+		arg.OptionKey,
+		arg.Text,
+		arg.SortOrder,
+	)
+	return err
+}
+
+const insertQuizQuestion = `-- name: InsertQuizQuestion :one
+INSERT INTO quiz_questions (quiz_id, prompt, correct_option_keys, is_multi_select, explanation, sort_order)
+VALUES ($1, $2, $3, $4, $5, $6)
+RETURNING id, quiz_id, prompt, correct_option_keys, is_multi_select, explanation, sort_order
+`
+
+type InsertQuizQuestionParams struct {
+	QuizID            pgtype.UUID `db:"quiz_id" json:"quiz_id"`
+	Prompt            string      `db:"prompt" json:"prompt"`
+	CorrectOptionKeys []string    `db:"correct_option_keys" json:"correct_option_keys"`
+	IsMultiSelect     bool        `db:"is_multi_select" json:"is_multi_select"`
+	Explanation       pgtype.Text `db:"explanation" json:"explanation"`
+	SortOrder         int16       `db:"sort_order" json:"sort_order"`
+}
+
+func (q *Queries) InsertQuizQuestion(ctx context.Context, arg InsertQuizQuestionParams) (QuizQuestion, error) {
+	row := q.db.QueryRow(ctx, insertQuizQuestion,
+		arg.QuizID,
+		arg.Prompt,
+		arg.CorrectOptionKeys,
+		arg.IsMultiSelect,
+		arg.Explanation,
+		arg.SortOrder,
+	)
+	var i QuizQuestion
+	err := row.Scan(
+		&i.ID,
+		&i.QuizID,
+		&i.Prompt,
+		&i.CorrectOptionKeys,
+		&i.IsMultiSelect,
+		&i.Explanation,
+		&i.SortOrder,
+	)
+	return i, err
 }
 
 const listAllCourses = `-- name: ListAllCourses :many
@@ -571,6 +735,83 @@ func (q *Queries) UpdateCourseStatus(ctx context.Context, arg UpdateCourseStatus
 		&i.CreatedAt,
 		&i.UpdatedAt,
 		&i.FtsVector,
+	)
+	return i, err
+}
+
+const updateLesson = `-- name: UpdateLesson :one
+UPDATE lessons
+SET title = $3, duration = $4, video_url = $5, is_preview = $6, description = $7, sort_order = $8
+WHERE id = $1 AND course_id = $2
+RETURNING id, course_id, title, duration, video_url, is_preview, description, sort_order, created_at
+`
+
+type UpdateLessonParams struct {
+	ID          pgtype.UUID `db:"id" json:"id"`
+	CourseID    pgtype.UUID `db:"course_id" json:"course_id"`
+	Title       string      `db:"title" json:"title"`
+	Duration    string      `db:"duration" json:"duration"`
+	VideoUrl    pgtype.Text `db:"video_url" json:"video_url"`
+	IsPreview   bool        `db:"is_preview" json:"is_preview"`
+	Description pgtype.Text `db:"description" json:"description"`
+	SortOrder   int16       `db:"sort_order" json:"sort_order"`
+}
+
+func (q *Queries) UpdateLesson(ctx context.Context, arg UpdateLessonParams) (Lesson, error) {
+	row := q.db.QueryRow(ctx, updateLesson,
+		arg.ID,
+		arg.CourseID,
+		arg.Title,
+		arg.Duration,
+		arg.VideoUrl,
+		arg.IsPreview,
+		arg.Description,
+		arg.SortOrder,
+	)
+	var i Lesson
+	err := row.Scan(
+		&i.ID,
+		&i.CourseID,
+		&i.Title,
+		&i.Duration,
+		&i.VideoUrl,
+		&i.IsPreview,
+		&i.Description,
+		&i.SortOrder,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
+const updateQuiz = `-- name: UpdateQuiz :one
+UPDATE quizzes
+SET title = $2, description = $3, passing_score = $4
+WHERE id = $1
+RETURNING id, course_id, title, description, passing_score, created_at
+`
+
+type UpdateQuizParams struct {
+	ID           pgtype.UUID `db:"id" json:"id"`
+	Title        string      `db:"title" json:"title"`
+	Description  pgtype.Text `db:"description" json:"description"`
+	PassingScore int16       `db:"passing_score" json:"passing_score"`
+}
+
+func (q *Queries) UpdateQuiz(ctx context.Context, arg UpdateQuizParams) (Quiz, error) {
+	row := q.db.QueryRow(ctx, updateQuiz,
+		arg.ID,
+		arg.Title,
+		arg.Description,
+		arg.PassingScore,
+	)
+	var i Quiz
+	err := row.Scan(
+		&i.ID,
+		&i.CourseID,
+		&i.Title,
+		&i.Description,
+		&i.PassingScore,
+		&i.CreatedAt,
 	)
 	return i, err
 }

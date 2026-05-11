@@ -26,6 +26,10 @@ func (h *CourseHandler) RegisterRoutes(v1 *echo.Group, cfg *config.Config) {
 	admin.PUT("", h.Upsert)
 	admin.DELETE("/:id", h.Delete)
 	admin.PATCH("/:id/status", h.SetStatus)
+	admin.PUT("/:id/lessons", h.UpsertLesson)
+	admin.DELETE("/:id/lessons/:lessonId", h.DeleteLesson)
+	admin.PUT("/:id/quiz", h.UpsertQuiz)
+	admin.DELETE("/:id/quiz", h.DeleteQuiz)
 }
 
 // Request types
@@ -213,4 +217,145 @@ func (h *CourseHandler) SetStatus(c echo.Context) error {
 		return response.NotFound(c, "course not found")
 	}
 	return response.OK(c, course)
+}
+
+// UpsertLesson godoc
+//
+//	@Summary		Create or update a lesson (admin)
+//	@Tags			Courses
+//	@Accept			json
+//	@Produce		json
+//	@Security		BearerAuth
+//	@Param			id		path		string	true	"Course UUID"
+//	@Success		200		{object}	response.Response{data=service.LessonResponse}
+//	@Router			/courses/{id}/lessons [put]
+func (h *CourseHandler) UpsertLesson(c echo.Context) error {
+	var body struct {
+		ID          string  `json:"id"`
+		Title       string  `json:"title" validate:"required"`
+		Duration    string  `json:"duration" validate:"required"`
+		VideoURL    *string `json:"videoUrl"`
+		IsPreview   bool    `json:"isPreview"`
+		Description *string `json:"description"`
+		SortOrder   int16   `json:"sortOrder"`
+	}
+	if err := bindAndValidate(c, &body); err != nil {
+		return err
+	}
+	lesson, err := h.svc.UpsertLesson(c.Request().Context(), c.Param("id"), service.UpsertLessonParams{
+		ID:          body.ID,
+		Title:       body.Title,
+		Duration:    body.Duration,
+		VideoURL:    body.VideoURL,
+		IsPreview:   body.IsPreview,
+		Description: body.Description,
+		SortOrder:   body.SortOrder,
+	})
+	if err != nil {
+		if err.Error() == "lesson not found" {
+			return response.NotFound(c, "lesson not found")
+		}
+		return response.InternalError(c, err.Error())
+	}
+	return response.OK(c, lesson)
+}
+
+// DeleteLesson godoc
+//
+//	@Summary		Delete a lesson (admin)
+//	@Tags			Courses
+//	@Produce		json
+//	@Security		BearerAuth
+//	@Param			id			path	string	true	"Course UUID"
+//	@Param			lessonId	path	string	true	"Lesson UUID"
+//	@Success		204	"No content"
+//	@Router			/courses/{id}/lessons/{lessonId} [delete]
+func (h *CourseHandler) DeleteLesson(c echo.Context) error {
+	if err := h.svc.DeleteLesson(c.Request().Context(), c.Param("id"), c.Param("lessonId")); err != nil {
+		return response.InternalError(c, "")
+	}
+	return noContent(c)
+}
+
+// UpsertQuiz godoc
+//
+//	@Summary		Create or replace the quiz for a course (admin)
+//	@Tags			Courses
+//	@Accept			json
+//	@Produce		json
+//	@Security		BearerAuth
+//	@Param			id		path		string	true	"Course UUID"
+//	@Success		200		{object}	response.Response{data=service.QuizResponse}
+//	@Router			/courses/{id}/quiz [put]
+func (h *CourseHandler) UpsertQuiz(c echo.Context) error {
+	var body struct {
+		ID           string  `json:"id"`
+		Title        string  `json:"title" validate:"required"`
+		Description  *string `json:"description"`
+		PassingScore int16   `json:"passingScore"`
+		Questions    []struct {
+			Prompt            string   `json:"prompt" validate:"required"`
+			CorrectOptionKeys []string `json:"correctOptionKeys" validate:"required"`
+			IsMultiSelect     bool     `json:"isMultiSelect"`
+			Explanation       *string  `json:"explanation"`
+			SortOrder         int16    `json:"sortOrder"`
+			Options           []struct {
+				OptionKey string `json:"optionKey" validate:"required"`
+				Text      string `json:"text" validate:"required"`
+				SortOrder int16  `json:"sortOrder"`
+			} `json:"options" validate:"required"`
+		} `json:"questions" validate:"required"`
+	}
+	if err := bindAndValidate(c, &body); err != nil {
+		return err
+	}
+	questions := make([]service.UpsertQuizQuestionParams, len(body.Questions))
+	for i, q := range body.Questions {
+		opts := make([]service.UpsertQuizOptionParams, len(q.Options))
+		for j, o := range q.Options {
+			opts[j] = service.UpsertQuizOptionParams{
+				OptionKey: o.OptionKey,
+				Text:      o.Text,
+				SortOrder: o.SortOrder,
+			}
+		}
+		questions[i] = service.UpsertQuizQuestionParams{
+			Prompt:            q.Prompt,
+			CorrectOptionKeys: q.CorrectOptionKeys,
+			IsMultiSelect:     q.IsMultiSelect,
+			Explanation:       q.Explanation,
+			SortOrder:         q.SortOrder,
+			Options:           opts,
+		}
+	}
+	quiz, err := h.svc.UpsertQuiz(c.Request().Context(), c.Param("id"), service.UpsertQuizParams{
+		ID:           body.ID,
+		Title:        body.Title,
+		Description:  body.Description,
+		PassingScore: body.PassingScore,
+		Questions:    questions,
+	})
+	if err != nil {
+		return response.InternalError(c, err.Error())
+	}
+	return response.OK(c, quiz)
+}
+
+// DeleteQuiz godoc
+//
+//	@Summary		Delete the quiz for a course (admin)
+//	@Tags			Courses
+//	@Produce		json
+//	@Security		BearerAuth
+//	@Param			id	path	string	true	"Course UUID"
+//	@Success		204	"No content"
+//	@Router			/courses/{id}/quiz [delete]
+func (h *CourseHandler) DeleteQuiz(c echo.Context) error {
+	if err := h.svc.DeleteQuiz(c.Request().Context(), c.Param("id")); err != nil {
+		if err.Error() == "quiz not found" {
+			return response.NotFound(c, "quiz not found")
+		}
+		return response.InternalError(c, "")
+	}
+	return noContent(c)
 }
