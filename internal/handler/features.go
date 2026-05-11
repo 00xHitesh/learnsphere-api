@@ -4,15 +4,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type FeatureHandler struct {
-	svc *service.FeatureService
+	svc featureService
 }
 
-func NewFeatureHandler(svc *service.FeatureService) *FeatureHandler {
+func NewFeatureHandler(svc featureService) *FeatureHandler {
 	return &FeatureHandler{svc: svc}
 }
 

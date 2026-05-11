@@ -50,8 +50,8 @@ INSERT INTO regions (code, name, default_currency_code) VALUES
 
 -- Passwords are placeholders — replace with real bcrypt hashes before production use
 INSERT INTO users (id, name, email, password_hash, role) VALUES
-  ('00000000-0000-0000-0000-000000000001', 'Admin',        'admin@lumen.io', '$2b$12$placeholder_hash_admin_CHANGEME', 'admin'),
-  ('00000000-0000-0000-0000-000000000002', 'Demo Student', 'demo@lumen.io',  '$2b$12$placeholder_hash_demo_CHANGEME',  'user');
+  ('00000000-0000-0000-0000-000000000001', 'Admin',        'admin@lumen.io', '$2a$10$GpgS8pBRImVU/hY2SkqiDOC3xb/bPy2ThpybRanchwVy6VvMuewvO', 'admin'),
+  ('00000000-0000-0000-0000-000000000002', 'Demo Student', 'demo@lumen.io',  '$2a$10$GpgS8pBRImVU/hY2SkqiDOC3xb/bPy2ThpybRanchwVy6VvMuewvO', 'user');
 
 INSERT INTO user_interests (user_id, category) VALUES
   ('00000000-0000-0000-0000-000000000002', 'Design'),

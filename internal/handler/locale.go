@@ -2,15 +2,14 @@ package handler
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type LocaleHandler struct {
-	svc *service.LocaleService
+	svc localeService
 }
 
-func NewLocaleHandler(svc *service.LocaleService) *LocaleHandler {
+func NewLocaleHandler(svc localeService) *LocaleHandler {
 	return &LocaleHandler{svc: svc}
 }
 

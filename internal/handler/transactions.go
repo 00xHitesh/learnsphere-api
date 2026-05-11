@@ -4,15 +4,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type TransactionHandler struct {
-	svc *service.TransactionService
+	svc transactionService
 }
 
-func NewTransactionHandler(svc *service.TransactionService) *TransactionHandler {
+func NewTransactionHandler(svc transactionService) *TransactionHandler {
 	return &TransactionHandler{svc: svc}
 }
 

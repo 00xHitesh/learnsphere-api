@@ -6,15 +6,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type AuthHandler struct {
-	svc *service.AuthService
+	svc authService
 }
 
-func NewAuthHandler(svc *service.AuthService) *AuthHandler {
+func NewAuthHandler(svc authService) *AuthHandler {
 	return &AuthHandler{svc: svc}
 }
 

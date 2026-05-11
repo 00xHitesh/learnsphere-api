@@ -4,15 +4,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type EnrollmentHandler struct {
-	svc *service.EnrollmentService
+	svc enrollmentService
 }
 
-func NewEnrollmentHandler(svc *service.EnrollmentService) *EnrollmentHandler {
+func NewEnrollmentHandler(svc enrollmentService) *EnrollmentHandler {
 	return &EnrollmentHandler{svc: svc}
 }
 

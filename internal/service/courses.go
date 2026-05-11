@@ -82,9 +82,9 @@ type CourseResponse struct {
 	Cover         string          `json:"cover"`
 	Status        string          `json:"status"`
 	Tags          []string        `json:"tags"`
-	Lessons       []LessonResponse `json:"lessons,omitempty"`
-	Reviews       []ReviewResponse `json:"reviews,omitempty"`
-	Quiz          *QuizResponse   `json:"quiz,omitempty"`
+	Lessons       []LessonResponse `json:"lessons"`
+	Reviews       []ReviewResponse `json:"reviews"`
+	Quiz          *QuizResponse   `json:"quiz"`
 	CreatedAt     string          `json:"createdAt"`
 	UpdatedAt     string          `json:"updatedAt"`
 }
@@ -278,22 +278,37 @@ func (s *CourseService) buildCourseResponse(ctx context.Context, c repository.Co
 		return resp, nil
 	}
 
-	lessons, _ := s.q.ListLessonsByCourse(ctx, c.ID)
+	lessons, err := s.q.ListLessonsByCourse(ctx, c.ID)
+	if err != nil {
+		return resp, err
+	}
 	resp.Lessons = toLessonResponses(lessons)
 
-	reviews, _ := s.q.ListReviewsByCourse(ctx, c.ID)
+	reviews, err := s.q.ListReviewsByCourse(ctx, c.ID)
+	if err != nil {
+		return resp, err
+	}
 	resp.Reviews = toReviewResponses(reviews)
 
 	quiz, err := s.q.GetQuizByCourse(ctx, c.ID)
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return resp, err
+	}
 	if err == nil {
-		questions, _ := s.q.ListQuizQuestions(ctx, quiz.ID)
+		questions, err := s.q.ListQuizQuestions(ctx, quiz.ID)
+		if err != nil {
+			return resp, err
+		}
 		qIDs := make([]pgtype.UUID, len(questions))
 		for i, q := range questions {
 			qIDs[i] = q.ID
 		}
 		var opts []repository.QuizOption
 		if len(qIDs) > 0 {
-			opts, _ = s.q.ListQuizOptions(ctx, qIDs)
+			opts, err = s.q.ListQuizOptions(ctx, qIDs)
+			if err != nil {
+				return resp, err
+			}
 		}
 		resp.Quiz = toQuizResponse(quiz, questions, opts)
 	}
@@ -325,6 +340,9 @@ func toCourseResponse(c repository.Course) CourseResponse {
 }
 
 func toLessonResponses(lessons []repository.Lesson) []LessonResponse {
+	if lessons == nil {
+		return []LessonResponse{}
+	}
 	out := make([]LessonResponse, len(lessons))
 	for i, l := range lessons {
 		out[i] = LessonResponse{
@@ -342,6 +360,9 @@ func toLessonResponses(lessons []repository.Lesson) []LessonResponse {
 }
 
 func toReviewResponses(reviews []repository.Review) []ReviewResponse {
+	if reviews == nil {
+		return []ReviewResponse{}
+	}
 	out := make([]ReviewResponse, len(reviews))
 	for i, r := range reviews {
 		var uid *string

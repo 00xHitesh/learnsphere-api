@@ -4,15 +4,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type WishlistHandler struct {
-	svc *service.WishlistService
+	svc wishlistService
 }
 
-func NewWishlistHandler(svc *service.WishlistService) *WishlistHandler {
+func NewWishlistHandler(svc wishlistService) *WishlistHandler {
 	return &WishlistHandler{svc: svc}
 }
 

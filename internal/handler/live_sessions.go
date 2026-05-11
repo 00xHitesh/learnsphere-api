@@ -12,10 +12,10 @@ import (
 )
 
 type LiveSessionHandler struct {
-	svc *service.LiveSessionService
+	svc liveSessionService
 }
 
-func NewLiveSessionHandler(svc *service.LiveSessionService) *LiveSessionHandler {
+func NewLiveSessionHandler(svc liveSessionService) *LiveSessionHandler {
 	return &LiveSessionHandler{svc: svc}
 }
 

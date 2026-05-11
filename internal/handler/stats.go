@@ -4,15 +4,14 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/hitnarkhede/learnsphere-api/internal/config"
 	"github.com/hitnarkhede/learnsphere-api/internal/middleware"
-	"github.com/hitnarkhede/learnsphere-api/internal/service"
 	"github.com/hitnarkhede/learnsphere-api/pkg/response"
 )
 
 type StatsHandler struct {
-	svc *service.StatsService
+	svc statsService
 }
 
-func NewStatsHandler(svc *service.StatsService) *StatsHandler {
+func NewStatsHandler(svc statsService) *StatsHandler {
 	return &StatsHandler{svc: svc}
 }
 
